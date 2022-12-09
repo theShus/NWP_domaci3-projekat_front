@@ -60,24 +60,6 @@ export class EditUserComponent implements OnInit{
       this.userInfo.mail = result.mail
       this.userRoles = result.roles
 
-      // result.roles.forEach(role => {this.userRolesMap.set(role.name, role.id)})
-      // console.log(this.userRolesMap)
-      // console.log(this.serverRoles)
-      // console.log('-------')
-      // this.serverRoles.forEach(role =>{
-      //   console.log(role.name)
-      //     if (this.userRolesMap.has(role.name)){
-      //       console.log('has')
-      //       console.log(role)
-      //     }
-      // })
-      // this.serverRoles.forEach(serverRole => {
-      //   if (this.userRoles.includes(serverRole)){
-      //     console.log("has")
-      //     console.log(serverRole)
-      //   }
-      // })
-
       result.roles.forEach(element => {
         if(element.name.includes("can_read_users")) this.readRole = true
         if(element.name.includes("can_create_users")) this.createRole = true
@@ -94,13 +76,15 @@ export class EditUserComponent implements OnInit{
     if (this.updateRole) this.addRoles('can_update_users')
     if (this.deleteRole) this.addRoles('can_delete_users')
 
-    console.log(this.userInfo)
-    console.log(localStorage.getItem('token'))
-    console.log('----------')
-
     this.userService.updateUser(this.userInfo).subscribe(result => {
       console.log(result)
     })
+
+    this.readRole = false
+    this.createRole = false
+    this.updateRole = false
+    this.deleteRole = false
+    this.userInfo.roles = []
   }
 
   addRoles(name: string): void{

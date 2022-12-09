@@ -38,4 +38,8 @@ export class UserService {
     return this.httpClient.post<User>(`${environment.apiUserServerUrl}/add`, user, { headers: this.headers });
   }
 
+  public deleteUser(id: number): Observable<any>{
+    return this.httpClient.delete<any>(`${environment.apiUserServerUrl}/delete/${id}`, { headers: this.headers });
+  }
+
 }

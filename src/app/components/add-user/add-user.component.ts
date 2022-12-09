@@ -59,11 +59,14 @@ export class AddUserComponent implements OnInit{
     this.userService.addUser(this.userInfo).subscribe(result => {
       console.log(result)
     })
+    this.readRole = false
+    this.createRole = false
+    this.updateRole = false
+    this.deleteRole = false
+    this.userInfo.roles = []
   }
 
   addRoles(name: string): void{
-    console.log(name)
-    console.log("aaaaaa")
     this.serverRoles.forEach(role => {
       if (role.name.includes(name)){
         this.userInfo.roles.push(role)

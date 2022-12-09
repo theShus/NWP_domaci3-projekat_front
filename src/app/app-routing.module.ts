@@ -5,23 +5,33 @@ import {AppComponent} from "./components/app/app.component";
 import {AllUsersComponent} from "./components/all-users/all-users.component";
 import {AddUserComponent} from "./components/add-user/add-user.component";
 import {EditUserComponent} from "./components/edit-user/edit-user.component";
+import {LoginGuard} from "./guards/login.guard";
+import {AllGuard} from "./guards/all.guard";
+import {AddGuard} from "./guards/add.guard";
+import {EditGuard} from "./guards/edit.guard";
+
 
 const routes: Routes = [
   {
     path: "",
-    component: LoginComponent
+    component: LoginComponent,
+    canDeactivate: [LoginGuard]
   },
   {
     path: "all",
-    component: AllUsersComponent
+    component: AllUsersComponent,
+    canActivate: [AllGuard]
+
   },
   {
     path: "add",
-    component: AddUserComponent
+    component: AddUserComponent,
+    canActivate: [AddGuard]
   },
   {
     path: "edit/:id",
-    component: EditUserComponent
+    component: EditUserComponent,
+    canActivate: [EditGuard]
   }
 ];
 

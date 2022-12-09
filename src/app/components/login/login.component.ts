@@ -37,13 +37,12 @@ export class LoginComponent implements OnInit{
     this.loginService.loginUser(this.userLoginInfo).subscribe(loginResponse =>{
       localStorage.setItem("token", loginResponse.jwt);
       localStorage.setItem("userRoles",  JSON.stringify(loginResponse.roles))
+      this.router.navigate(["all"]);
 
-      if (loginResponse.roles.length == 0) alert("You have no roles")
-      else this.router.navigate(["all"]);
-
-      console.log(localStorage.getItem("token"));
-      console.log(localStorage.getItem("userRoles"))
-    })
+      // console.log(localStorage.getItem("token"));
+      // console.log(localStorage.getItem("userRoles"))
+    },
+    error => {alert("Email or password wrong")})
   }
 
 }
