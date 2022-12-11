@@ -20,7 +20,7 @@ export class AllUsersComponent implements OnInit, OnDestroy{
     this.userList = []
     this.userRoles = []
 
-    if(localStorage.getItem("userRoles")?.includes("can_update_users"))//todo ovo promeni mozda
+    if(localStorage.getItem("userRoles")?.includes("can_update_users"))
       this.canUpdate = true
     this.router = router
 
