@@ -4,23 +4,19 @@
   <div>
     <label>Authorization roles:</label>
     <div class="form-check">
-      <input [(ngModel)]="readRole" class="form-check-input" type="checkbox"
-             value="CAN_READ_USERS" id="defaultCheck1">
+      <input [(ngModel)]="readRole" class="form-check-input" type="checkbox" value="CAN_READ_USERS" id="defaultCheck1">
       <label class="form-check-label" for="defaultCheck1">READ</label>
     </div>
     <div class="form-check">
-      <input [(ngModel)]="createRole" class="form-check-input" type="checkbox"
-             value="CAN_CREATE_USERS" id="defaultCheck2">
+      <input [(ngModel)]="createRole" class="form-check-input" type="checkbox" value="CAN_CREATE_USERS" id="defaultCheck2">
       <label class="form-check-label" for="defaultCheck2">CREATE</label>
     </div>
     <div class="form-check">
-      <input [(ngModel)]="updateRole" class="form-check-input" type="checkbox"
-             value="CAN_UPDATE_USERS" id="defaultCheck3">
+      <input [(ngModel)]="updateRole" class="form-check-input" type="checkbox" value="CAN_UPDATE_USERS" id="defaultCheck3">
       <label class="form-check-label" for="defaultCheck3">UPDATE</label>
     </div>
     <div class="form-check">
-      <input [(ngModel)]="deleteRole" class="form-check-input" type="checkbox"
-             value="CAN_DELETE_USERS" id="defaultCheck4">
+      <input [(ngModel)]="deleteRole" class="form-check-input" type="checkbox" value="CAN_DELETE_USERS" id="defaultCheck4">
       <label class="form-check-label" for="defaultCheck4">DELETE</label>
     </div>
     <br>
@@ -29,14 +25,14 @@
         <label for="name">Name:</label>
         <input [(ngModel)]="userInfo.name" type="text" class="form-control" id="name" name="name" placeholder="Enter the user's name" [formControlName]="'name'">
 
-        <label for="surname">Surname:</label>
-        <input [(ngModel)]="userInfo.lastName" type="text" class="form-control" id="surname" name="surname" placeholder="Enter the user's surname" [formControlName]="'lastName'">
+        <label for="lastname">Lastname:</label>
+        <input [(ngModel)]="userInfo.lastName" type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter the user's lastname" [formControlName]="'lastName'">
 
-        <label for="email">Email address:</label>
-        <input [(ngModel)]="userInfo.mail" type="email" class="form-control" id="email" name="email" placeholder="Enter the user's email address" [formControlName]="'mail'">
+        <label for="mail">Email address:</label>
+        <input [(ngModel)]="userInfo.mail" type="mail" class="form-control" id="mail" name="mail" placeholder="Enter the user's mail address" [formControlName]="'mail'">
       </div>
       <br>
-      <button type="submit" class="btn btn-primary">Update user</button>
+      <button type="submit" class="btn btn-outline-primary">Update user</button>
     </form>
   </div>
 </div>
