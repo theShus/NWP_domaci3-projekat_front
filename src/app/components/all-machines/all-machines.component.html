@@ -1,10 +1,39 @@
 <h2>Machines</h2>
-<br>
+
+<div>
+  <label>Machine status:</label>
+  <div class="form-check">
+    <input [(ngModel)]="runningStatus" class="form-check-input" type="checkbox" value="RUNNING" id="defaultCheck1">
+    <label class="form-check-label" for="defaultCheck1">RUNNING</label>
+  </div>
+  <div class="form-check">
+    <input [(ngModel)]="stoppedStatus" class="form-check-input" type="checkbox" value="STOPPED" id="defaultCheck2">
+    <label class="form-check-label" for="defaultCheck2">STOPPED</label>
+  </div>
+
+  <form [formGroup]="searchForm" (submit)="search()" class="mb-5">
+    <div class="form-group mb-2">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Enter the machine's name"
+             [(ngModel)]="machineSearchParameters.name" [formControlName]="'name'">
+      <label for="dateFrom">Date from:</label>
+      <input type="date" class="form-control" id="dateFrom" name="dateFrom" placeholder="Pick date from"
+             [(ngModel)]="machineSearchParameters.dateFrom" [formControlName]="'dateFrom'">
+      <label for="dateTo">Date to:</label>
+      <input type="date" class="form-control" id="dateTo" name="dateTo" placeholder="Pick date to"
+             [(ngModel)]="machineSearchParameters.dateTo" [formControlName]="'dateTo'">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+    <hr>
+    <hr>
+  </form>
+</div>
+
 <div *ngFor="let machine of machineList; let i = index;" class="mb-2">
   <h4 class="text-decoration-underline">{{ i + 1 }}. {{ machine.name + " - "}}{{ machine.status }}</h4>
   <label><b>Date:</b> {{machine.creationDate}}</label>
   <br>
-  <div *ngIf="machine.status.toString() == 'STOPPED'; else startMachine">
+  <div>
     <label><b>Actions:</b></label> &nbsp;
     <button class="btn btn-outline-info" (click)="startMachinee(machine.id)">Start</button>
     &nbsp;-

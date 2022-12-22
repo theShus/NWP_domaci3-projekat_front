@@ -40,6 +40,12 @@ export interface Machine {
   user: User
 }
 
+export interface MachineSearchParameters{
+  name: string,
+  dateFrom: any,
+  dateTo: any
+}
+
 export enum Status {
   STOPPED,
   RUNNING
@@ -50,6 +56,10 @@ export interface ErrorMessage {
   machineId: number,
   operation: string,
   message: string
+}
+
+export interface SearchResult {
+  array: []
 }
 
 

@@ -1,10 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
-import {UserService} from "../../services/user.service";
-import {Machine} from "../../models";
+import {Machine, MachineSearchParameters} from "../../models";
 import {MachineService} from "../../services/machine.service";
-import {LoginComponent} from "../login/login.component";
-import {logCumulativeDurations} from "@angular-devkit/build-angular/src/builders/browser-esbuild/profiling";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-all-machines',
@@ -14,13 +12,33 @@ import {logCumulativeDurations} from "@angular-devkit/build-angular/src/builders
 
 export class AllMachinesComponent  implements OnInit, OnDestroy{
 
+  searchForm: FormGroup
+  machineSearchParameters: MachineSearchParameters
   router: Router
-  someSubscription: any;
-  machineList: Machine[]
+  someSubscription: any
+  machineList: any
+  runningStatus:boolean
+  stoppedStatus:boolean
 
-  constructor(private machineService: MachineService,  router: Router) {
+
+  constructor(private machineService: MachineService,  router: Router, private formBuilder: FormBuilder) {
     this.router = router
     this.machineList = []
+    this.runningStatus = false
+    this.stoppedStatus = false
+
+    this.searchForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      dateFrom: ['', [Validators.required]],
+      dateTo: ['', [Validators.required]],
+
+    })
+
+    this.machineSearchParameters = {
+      name: '',
+      dateFrom: null,
+      dateTo: null
+    }
 
     //https://medium.com/beingcoders/angular-basics-refresh-an-angular-component-without-reloading-the-same-component-b6c513f06fb2
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -48,6 +66,30 @@ export class AllMachinesComponent  implements OnInit, OnDestroy{
       result.forEach(machine => {
         if (machine.active) this.machineList.push(machine)
       })
+      console.log(result)
+    })
+  }
+
+  search(){
+    let statusString: any
+    if (this.runningStatus && this.stoppedStatus) statusString = "RUNNING,STOPPED"
+    else if (!this.runningStatus && !this.stoppedStatus) statusString = null
+    else {
+      statusString = ''
+      if (this.runningStatus) statusString = statusString + "RUNNING"
+      if (this.stoppedStatus) statusString = statusString + "STOPPED"
+    }
+
+    console.log(statusString)
+
+    this.machineService.searchMachines(
+      localStorage.getItem("userMail")!,
+      this.machineSearchParameters.name,
+      statusString,
+      this.machineSearchParameters.dateFrom,
+      this.machineSearchParameters.dateTo).subscribe(result => {
+      this.machineList = result
+      console.log(this.machineList)
     })
   }
 

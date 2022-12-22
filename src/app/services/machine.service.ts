@@ -39,4 +39,15 @@ export class MachineService {
     return this.httpClient.delete<Machine>(`${environment.apiMachineServerUrl}/destroy/${id}`, { headers: this.headers });
   }
 
+  public searchMachines(mail: string, name: string, status: any, dateFrom: any, dateTo: any): Observable<Machine>{
+    let url = new URL(`${environment.apiMachineServerUrl}/get_filtered`)
+    url.searchParams.append('mail',mail)
+    url.searchParams.append('name',name)
+    if (status != null) url.searchParams.append('status',status)
+    if (dateFrom != null) url.searchParams.append('dateFrom',dateFrom)
+    if (dateTo != null) url.searchParams.append('dateTo',dateTo)
+
+    return this.httpClient.get<Machine>(`${url}`, { headers: this.headers,  });
+  }
+
 }
