@@ -31,4 +31,26 @@ export interface NewUser{
   roles: Role[]
 }
 
+export interface Machine {
+  id: number,
+  name: string,
+  creationDate: Date,
+  status: Status,
+  active: boolean,
+  user: User
+}
+
+export enum Status {
+  STOPPED,
+  RUNNING
+}
+
+export interface ErrorMessage {
+  date: Date,
+  machineId: number,
+  operation: string,
+  message: string
+}
+
+
 

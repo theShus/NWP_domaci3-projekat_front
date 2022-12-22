@@ -3,6 +3,7 @@ import {LoginService} from "../../services/login.service";
 import {UserLoginInfo} from "../../models";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {getMatIconFailedToSanitizeLiteralError} from "@angular/material/icon";
 
 @Component({
   selector: 'app-login',
@@ -37,8 +38,8 @@ export class LoginComponent implements OnInit{
     this.loginService.loginUser(this.userLoginInfo).subscribe(loginResponse =>{
       localStorage.setItem("token", loginResponse.jwt);
       localStorage.setItem("userRoles",  JSON.stringify(loginResponse.roles))
+      localStorage.setItem("userMail", this.userLoginInfo.mail)
       this.router.navigate(["all"]);
-
       // console.log(localStorage.getItem("token"));
       // console.log(localStorage.getItem("userRoles"))
     },

@@ -1,0 +1,24 @@
+<h2>Machines</h2>
+<br>
+<div *ngFor="let machine of machineList; let i = index;" class="mb-2">
+  <h4 class="text-decoration-underline">{{ i + 1 }}. {{ machine.name + " - "}}{{ machine.status }}</h4>
+  <label><b>Date:</b> {{machine.creationDate}}</label>
+  <br>
+  <div *ngIf="machine.status.toString() == 'STOPPED'; else startMachine">
+    <label><b>Actions:</b></label> &nbsp;
+    <button class="btn btn-outline-info" (click)="startMachinee(machine.id)">Start</button>
+    &nbsp;-
+    <button class="btn btn-outline-warning" (click)="restartMachine(machine.id)">Restart</button>
+    &nbsp;-
+    <button class="btn btn-outline-danger" (click)="destroyMachine(machine.id)">Destroy</button>
+  </div>
+  <ng-template #startMachine>
+    <label><b>Action:</b></label> &nbsp;
+    <button class="btn btn-outline-info" (click)="stopMachine(machine.id)">Stop</button>
+    &nbsp;-
+    <button class="btn btn-outline-warning" (click)="restartMachine(machine.id)">Restart</button>
+    &nbsp;-
+    <button class="btn btn-outline-danger" (click)="destroyMachine(machine.id)">Destroy</button>
+  </ng-template>
+  <hr>
+</div>

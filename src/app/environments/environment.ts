@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUserServerUrl: 'http://localhost:8080/api/users'
+  apiUserServerUrl: 'http://localhost:8080/api/users',
+  apiMachineServerUrl: 'http://localhost:8080/api/machines'
+
 };
 
 /*

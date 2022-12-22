@@ -9,6 +9,9 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { AllMachinesComponent } from './components/all-machines/all-machines.component';
+import { CreateMachineComponent } from './components/create-machine/create-machine.component';
+import { ErrorHostoryComponent } from './components/error-hostory/error-hostory.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import {HttpClientModule} from "@angular/common/http";
     AllUsersComponent,
     LoginComponent,
     AddUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    AllMachinesComponent,
+    CreateMachineComponent,
+    ErrorHostoryComponent
   ],
   imports: [
     BrowserModule,

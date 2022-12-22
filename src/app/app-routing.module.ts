@@ -9,6 +9,7 @@ import {LoginGuard} from "./guards/login.guard";
 import {AllGuard} from "./guards/all.guard";
 import {AddGuard} from "./guards/add.guard";
 import {EditGuard} from "./guards/edit.guard";
+import {AllMachinesComponent} from "./components/all-machines/all-machines.component";
 
 
 const routes: Routes = [
@@ -18,10 +19,14 @@ const routes: Routes = [
     canDeactivate: [LoginGuard]
   },
   {
+    path: "machines",
+    component: AllMachinesComponent
+    // canDeactivate: [LoginGuard]
+  },
+  {
     path: "all",
     component: AllUsersComponent,
     canActivate: [AllGuard]
-
   },
   {
     path: "add",
