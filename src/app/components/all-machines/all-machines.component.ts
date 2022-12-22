@@ -121,7 +121,8 @@ export class AllMachinesComponent  implements OnInit, OnDestroy{
     console.log("brisemo " + id)
     this.machineService.destroyMachine(id).subscribe(result => {
       this.router.navigate(['/machines'])
-      console.log(result)    })
+      console.log(result)
+    })
   }
 
   logOut(): void {

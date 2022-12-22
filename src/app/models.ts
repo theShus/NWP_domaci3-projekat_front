@@ -25,24 +25,24 @@ export interface User{
 export interface NewUser{
   id: number
   lastName: string
-  mail: string,
+  mail: string
   password: string
   name: string
   roles: Role[]
 }
 
 export interface Machine {
-  id: number,
-  name: string,
-  creationDate: Date,
-  status: Status,
-  active: boolean,
+  id: number
+  name: string
+  creationDate: Date
+  status: Status
+  active: boolean
   user: User
 }
 
 export interface MachineSearchParameters{
-  name: string,
-  dateFrom: any,
+  name: string
+  dateFrom: any
   dateTo: any
 }
 
@@ -52,10 +52,11 @@ export enum Status {
 }
 
 export interface ErrorMessage {
-  date: Date,
-  machineId: number,
-  operation: string,
+  id: number
   message: string
+  action: string
+  date: Date
+  machine: Machine
 }
 
 export interface SearchResult {

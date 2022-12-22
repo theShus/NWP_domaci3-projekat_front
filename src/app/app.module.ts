@@ -11,7 +11,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { AllMachinesComponent } from './components/all-machines/all-machines.component';
 import { CreateMachineComponent } from './components/create-machine/create-machine.component';
-import { ErrorHostoryComponent } from './components/error-hostory/error-hostory.component';
+import { ErrorHistoryComponent } from './components/error-history/error-history.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { ErrorHostoryComponent } from './components/error-hostory/error-hostory.
     EditUserComponent,
     AllMachinesComponent,
     CreateMachineComponent,
-    ErrorHostoryComponent
+    ErrorHistoryComponent
   ],
   imports: [
     BrowserModule,

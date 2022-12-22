@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from "./components/login/login.component";
-import {AppComponent} from "./components/app/app.component";
 import {AllUsersComponent} from "./components/all-users/all-users.component";
 import {AddUserComponent} from "./components/add-user/add-user.component";
 import {EditUserComponent} from "./components/edit-user/edit-user.component";
@@ -10,6 +9,8 @@ import {AllGuard} from "./guards/all.guard";
 import {AddGuard} from "./guards/add.guard";
 import {EditGuard} from "./guards/edit.guard";
 import {AllMachinesComponent} from "./components/all-machines/all-machines.component";
+import {CreateMachineComponent} from "./components/create-machine/create-machine.component";
+import {ErrorHistoryComponent} from "./components/error-history/error-history.component";
 
 
 const routes: Routes = [
@@ -21,7 +22,14 @@ const routes: Routes = [
   {
     path: "machines",
     component: AllMachinesComponent
-    // canDeactivate: [LoginGuard]
+  },
+  {
+    path: "create-machine",
+    component: CreateMachineComponent
+  },
+  {
+    path: "errors",
+    component: ErrorHistoryComponent
   },
   {
     path: "all",
