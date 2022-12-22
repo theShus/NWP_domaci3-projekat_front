@@ -66,5 +66,10 @@ export interface ErrorMessage {
   machine: Machine
 }
 
+export interface CreateRequest{
+  name: string
+  mail: string
+}
+
 
 

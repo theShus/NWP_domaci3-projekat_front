@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {
+  CreateRequest,
   ErrorMessage,
   Machine,
   ScheduleParameters,
@@ -38,20 +39,8 @@ export class MachineService {
     return this.httpClient.post<any>(`${environment.apiMachineServerUrl}/schedule`,scheduleRequest,{headers: this.headers} );
   }
 
-  public createMachine(name: string, mail: string): Observable<Machine>{//todo fix
-    console.log(mail)
-    console.log(name)
-
-    let url = new URL(`${environment.apiMachineServerUrl}/create`)
-    url.searchParams.append('mail','ljeremic@raf.rs')
-    url.searchParams.append('name','newnew')
-
-    const params = new HttpParams()
-      .set('id','ljeremic@raf.rs')
-      .set('date',"neww")
-
-    return this.httpClient.post<Machine>(`${environment.apiMachineServerUrl}/create`,params ,{ headers: this.headers });
-    // return this.httpClient.post<Machine>(`${url}`, { headers: this.headers });
+  public createMachine(createRequest: CreateRequest): Observable<Machine>{
+    return this.httpClient.post<Machine>(`${environment.apiMachineServerUrl}/create`,createRequest ,{ headers: this.headers });
   }
 
   public startMachine(id: number): Observable<Machine>{
