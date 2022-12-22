@@ -1,7 +1,7 @@
 <div>
   <button [routerLink]="['/']" type="button" class="btn btn-outline-warning"  (click)="logOut()">Log out</button>
   &nbsp;
-  <button [routerLink]="['/machines']" type="button" class="btn btn-outline-info">Go to machines</button>
+  <button *ngIf="getPermission('can_search_machines')" [routerLink]="['/machines']" type="button" class="btn btn-outline-info">Go to machines</button>
   &nbsp;
   <button *ngIf="getPermission('can_create_users')"  [routerLink]="['/add']"
           type="button" class="btn btn-outline-primary me-2">Create a new user</button>

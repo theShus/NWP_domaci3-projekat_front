@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit{
       localStorage.setItem("userMail", this.userLoginInfo.mail)
       this.router.navigate(["all"]);
       // console.log(localStorage.getItem("token"));
-      // console.log(localStorage.getItem("userRoles"))
+      console.log(localStorage.getItem("userRoles"))
     },
     error => {alert("Email or password wrong")})
   }

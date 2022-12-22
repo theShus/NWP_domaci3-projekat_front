@@ -12,6 +12,8 @@ import {AllMachinesComponent} from "./components/all-machines/all-machines.compo
 import {CreateMachineComponent} from "./components/create-machine/create-machine.component";
 import {ErrorHistoryComponent} from "./components/error-history/error-history.component";
 import {ScheduleComponent} from "./components/schedule/schedule.component";
+import {AllMachinesGuard} from "./guards/all-machines.guard";
+import {CreateMachinesGuard} from "./guards/create-machines.guard";
 
 
 const routes: Routes = [
@@ -22,19 +24,23 @@ const routes: Routes = [
   },
   {
     path: "machines",
-    component: AllMachinesComponent
+    component: AllMachinesComponent,
+    canActivate: [AllMachinesGuard]
   },
   {
     path: "create-machine",
-    component: CreateMachineComponent
+    component: CreateMachineComponent,
+    canActivate: [CreateMachinesGuard]
   },
   {
     path: "schedule/:id",
-    component: ScheduleComponent
+    component: ScheduleComponent,
+    canActivate: [AllMachinesGuard]
   },
   {
     path: "errors",
-    component: ErrorHistoryComponent
+    component: ErrorHistoryComponent,
+    canActivate: [AllMachinesGuard]
   },
   {
     path: "all",

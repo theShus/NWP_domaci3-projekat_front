@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AllGuard implements CanActivate {
+export class AllMachinesGuard implements CanActivate {
 
   router: Router
 
@@ -13,9 +13,9 @@ export class AllGuard implements CanActivate {
     this.router = router
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (localStorage.getItem("userRoles")?.includes('can_read_users')){
+    if (localStorage.getItem("userRoles")?.includes('can_search_machines')){
       return true
     }
     else {
