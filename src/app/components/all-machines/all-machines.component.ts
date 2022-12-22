@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
-import {MachineSearchParameters} from "../../models";
+import {MachineSearchParameters, Role} from "../../models";
 import {MachineService} from "../../services/machine.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
@@ -19,10 +19,12 @@ export class AllMachinesComponent  implements OnInit, OnDestroy{
   machineList: any
   runningStatus:boolean
   stoppedStatus:boolean
+  userRoles: Role[]
 
 
   constructor(private machineService: MachineService,  router: Router, private formBuilder: FormBuilder) {
     this.router = router
+    this.userRoles = []
     this.machineList = []
     this.runningStatus = false
     this.stoppedStatus = false
@@ -59,6 +61,11 @@ export class AllMachinesComponent  implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.getAllMachinesByUser(localStorage.getItem("userMail")!)
+    this.userRoles = JSON.parse(<string>localStorage.getItem("userRoles"))
+  }
+
+  getPermission(permission: string): boolean {
+    return !!localStorage.getItem("userRoles")?.includes(permission);
   }
 
   getAllMachinesByUser(mail: string){

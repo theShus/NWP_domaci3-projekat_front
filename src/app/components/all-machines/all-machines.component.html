@@ -3,13 +3,15 @@
   &nbsp;
   <button [routerLink]="['/all']" type="button" class="btn btn-outline-info">Go to users</button>
   -
-  <button [routerLink]="['/errors']" type="button" class="btn btn-outline-info">Go to errors</button>
+  <button *ngIf="getPermission('can_search_machines')" [routerLink]="['/errors']" type="button" class="btn btn-outline-info">Go to errors</button>
   &nbsp;
-  <button [routerLink]="['/create-machine']" type="button" class="btn btn-outline-primary">Create machine</button>
+  <button *ngIf="getPermission('can_create_machines')" [routerLink]="['/create-machine']" type="button"
+          class="btn btn-outline-primary">Create machine
+  </button>
   <hr>
 </div>
 
-<div>
+<div *ngIf="getPermission('can_search_machines')">
   <label>Machine status:</label>
   <div class="form-check">
     <input [(ngModel)]="runningStatus" class="form-check-input" type="checkbox" value="RUNNING" id="defaultCheck1">
@@ -34,7 +36,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Search</button>
     <hr>
-    <hr>
   </form>
 </div>
 
@@ -44,23 +45,39 @@
   <br>
   <div>
     <label><b>Actions:</b></label> &nbsp;
-    <button class="btn btn-outline-info" (click)="startMachinee(machine.id)">Start</button>
+    <button *ngIf="getPermission('can_start_machines')" class="btn btn-outline-info"
+            (click)="startMachinee(machine.id)">Start
+    </button>
     -
-    <button class="btn btn-outline-warning" (click)="restartMachine(machine.id)">Restart</button>
+    <button *ngIf="getPermission('can_restart_machines')" class="btn btn-outline-warning"
+            (click)="restartMachine(machine.id)">Restart
+    </button>
     -
-    <button  [routerLink]="'/schedule/' + machine.id" class="btn btn-outline-info">Schedule</button>
+    <button *ngIf="getPermission('can_schedule_machines')" [routerLink]="'/schedule/' + machine.id"
+            class="btn btn-outline-info">Schedule
+    </button>
     -
-    <button class="btn btn-outline-danger" (click)="destroyMachine(machine.id)">Destroy</button>
+    <button *ngIf="getPermission('can_destroy_machines')" class="btn btn-outline-danger"
+            (click)="destroyMachine(machine.id)">Destroy
+    </button>
   </div>
   <ng-template #startMachine>
     <label><b>Action:</b></label> &nbsp;
-    <button class="btn btn-outline-info" (click)="stopMachine(machine.id)">Stop</button>
+    <button *ngIf="getPermission('can_stop_machines')" class="btn btn-outline-info"
+            (click)="stopMachine(machine.id)"> Stop
+    </button>
     -
-    <button class="btn btn-outline-warning" (click)="restartMachine(machine.id)">Restart</button>
+    <button *ngIf="getPermission('can_restart_machines')" class="btn btn-outline-warning"
+            (click)="restartMachine(machine.id)">Restart
+    </button>
     -
-    <button [routerLink]="'/schedule/' + machine.id" class="btn btn-outline-info">Schedule</button>
+    <button *ngIf="getPermission('can_schedule_machines')" [routerLink]="'/schedule/' + machine.id"
+            class="btn btn-outline-info">Schedule
+    </button>
     -
-    <button class="btn btn-outline-danger" (click)="destroyMachine(machine.id)">Destroy</button>
+    <button *ngIf="getPermission('can_destroy_machines')" class="btn btn-outline-danger"
+            (click)="destroyMachine(machine.id)">Destroy
+    </button>
   </ng-template>
   <hr>
 </div>

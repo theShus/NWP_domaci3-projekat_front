@@ -20,7 +20,7 @@ export class AllUsersComponent implements OnInit, OnDestroy{
     this.userList = []
     this.userRoles = []
 
-    if(localStorage.getItem("userRoles")?.includes("can_update_users"))
+    if(localStorage.getItem("userRoles")?.includes("can_update_users"))//todo pogledaj ovo
       this.canUpdate = true
     this.router = router
 

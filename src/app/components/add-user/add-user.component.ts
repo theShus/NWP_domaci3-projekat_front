@@ -19,10 +19,16 @@ export class AddUserComponent implements OnInit{
   updateRole: boolean
   deleteRole: boolean
 
+  searchRole: boolean
+  startRole: boolean
+  stopRole: boolean
+  restartRole: boolean
+  createMachineRole: boolean
+  destroyRole: boolean
+  scheduleRole: boolean
 
   serverRoles: Role[]
   userRoles: Role[]
-
 
   constructor(private userService: UserService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
     this.updateForm = this.formBuilder.group({
@@ -41,10 +47,18 @@ export class AddUserComponent implements OnInit{
     }
     this.serverRoles = []
     this.userRoles = []
+
     this.readRole = false
     this.createRole = false
     this.updateRole = false
     this.deleteRole = false
+    this.searchRole = false
+    this.startRole = false
+    this.stopRole = false
+    this.restartRole = false
+    this.createMachineRole = false
+    this.destroyRole = false
+    this.scheduleRole = false
   }
 
   ngOnInit(): void {
@@ -57,6 +71,14 @@ export class AddUserComponent implements OnInit{
     if (this.updateRole) this.addRoles('can_update_users')
     if (this.deleteRole) this.addRoles('can_delete_users')
 
+    if (this.searchRole) this.addRoles('can_search_machines')
+    if (this.startRole) this.addRoles('can_start_machines')
+    if (this.stopRole) this.addRoles('can_stop_machines')
+    if (this.restartRole) this.addRoles('can_restart_machines')
+    if (this.createMachineRole) this.addRoles('can_create_machines')
+    if (this.destroyRole) this.addRoles('can_destroy_machines')
+    if (this.scheduleRole) this.addRoles('can_schedule_machines')
+
     this.userService.addUser(this.userInfo).subscribe(result => {
       console.log(result)
     })
@@ -64,6 +86,14 @@ export class AddUserComponent implements OnInit{
     this.createRole = false
     this.updateRole = false
     this.deleteRole = false
+    this.searchRole = false
+    this.startRole = false
+    this.stopRole = false
+    this.restartRole = false
+    this.createMachineRole = false
+    this.destroyRole = false
+    this.scheduleRole = false
+
     this.userInfo.roles = []
   }
 

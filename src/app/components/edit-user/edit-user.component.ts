@@ -18,6 +18,14 @@ export class EditUserComponent implements OnInit{
   updateRole: boolean
   deleteRole: boolean
 
+  searchRole: boolean
+  startRole: boolean
+  stopRole: boolean
+  restartRole: boolean
+  createMachineRole: boolean
+  destroyRole: boolean
+  scheduleRole: boolean
+
   serverRoles: Role[]
   userRoles: Role[]
 
@@ -39,10 +47,18 @@ export class EditUserComponent implements OnInit{
     }
     this.serverRoles = []
     this.userRoles = []
+
     this.readRole = false
     this.createRole = false
     this.updateRole = false
     this.deleteRole = false
+    this.searchRole = false
+    this.startRole = false
+    this.stopRole = false
+    this.restartRole = false
+    this.createMachineRole = false
+    this.destroyRole = false
+    this.scheduleRole = false
   }
 
   ngOnInit(): void {
@@ -65,6 +81,14 @@ export class EditUserComponent implements OnInit{
         if(element.name.includes("can_create_users")) this.createRole = true
         if(element.name.includes("can_update_users")) this.updateRole = true
         if(element.name.includes("can_delete_users")) this.deleteRole = true
+
+        if(element.name.includes("can_search_machines")) this.searchRole = true
+        if(element.name.includes("can_start_machines")) this.startRole = true
+        if(element.name.includes("can_stop_machines")) this.stopRole = true
+        if(element.name.includes("can_restart_machines")) this.restartRole = true
+        if(element.name.includes("can_create_machines")) this.createMachineRole = true
+        if(element.name.includes("can_destroy_machines")) this.destroyRole = true
+        if(element.name.includes("can_schedule_machines")) this.scheduleRole = true
       });
 
     })
@@ -76,14 +100,18 @@ export class EditUserComponent implements OnInit{
     if (this.updateRole) this.addRoles('can_update_users')
     if (this.deleteRole) this.addRoles('can_delete_users')
 
+    if (this.searchRole) this.addRoles('can_search_machines')
+    if (this.startRole) this.addRoles('can_start_machines')
+    if (this.stopRole) this.addRoles('can_stop_machines')
+    if (this.restartRole) this.addRoles('can_restart_machines')
+    if (this.createMachineRole) this.addRoles('can_create_machines')
+    if (this.destroyRole) this.addRoles('can_destroy_machines')
+    if (this.scheduleRole) this.addRoles('can_schedule_machines')
+
     this.userService.updateUser(this.userInfo).subscribe(result => {
       console.log(result)
     })
 
-    this.readRole = false
-    this.createRole = false
-    this.updateRole = false
-    this.deleteRole = false
     this.userInfo.roles = []
   }
 
