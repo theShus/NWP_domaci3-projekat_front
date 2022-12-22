@@ -12,6 +12,9 @@ import {HttpClientModule} from "@angular/common/http";
 import { AllMachinesComponent } from './components/all-machines/all-machines.component';
 import { CreateMachineComponent } from './components/create-machine/create-machine.component';
 import { ErrorHistoryComponent } from './components/error-history/error-history.component';
+import { ScheduleComponent } from './components/schedule/schedule.component';
+import {MatRadioModule} from "@angular/material/radio";
+
 
 @NgModule({
   declarations: [
@@ -22,14 +25,16 @@ import { ErrorHistoryComponent } from './components/error-history/error-history.
     EditUserComponent,
     AllMachinesComponent,
     CreateMachineComponent,
-    ErrorHistoryComponent
+    ErrorHistoryComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

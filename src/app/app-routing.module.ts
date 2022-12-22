@@ -11,6 +11,7 @@ import {EditGuard} from "./guards/edit.guard";
 import {AllMachinesComponent} from "./components/all-machines/all-machines.component";
 import {CreateMachineComponent} from "./components/create-machine/create-machine.component";
 import {ErrorHistoryComponent} from "./components/error-history/error-history.component";
+import {ScheduleComponent} from "./components/schedule/schedule.component";
 
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: "create-machine",
     component: CreateMachineComponent
+  },
+  {
+    path: "schedule/:id",
+    component: ScheduleComponent
   },
   {
     path: "errors",

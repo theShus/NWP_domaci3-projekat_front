@@ -24,8 +24,8 @@ export class CreateMachineComponent  implements OnInit{
   }
 
   createMachine(){
-    this.machineService.createMachine(this.name, localStorage.getItem("userMail")!).subscribe(result => {
-      this.router.navigate(['/machines'])
+    this.machineService.createMachine("newName", "ljeremic@raf.rs").subscribe(result => {
+      // this.router.navigate(['/machines'])
       console.log(result)
     })
   }

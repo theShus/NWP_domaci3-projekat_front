@@ -5,7 +5,7 @@
   -
   <button [routerLink]="['/errors']" type="button" class="btn btn-outline-info">Go to errors</button>
   &nbsp;
-  <button [routerLink]="['/create-machine']" type="button" class="btn btn-outline-primary me-2">Create machine</button>
+  <button [routerLink]="['/create-machine']" type="button" class="btn btn-outline-primary">Create machine</button>
   <hr>
 </div>
 
@@ -19,7 +19,7 @@
     <input [(ngModel)]="stoppedStatus" class="form-check-input" type="checkbox" value="STOPPED" id="defaultCheck2">
     <label class="form-check-label" for="defaultCheck2">STOPPED</label>
   </div>
-
+  <br>
   <form [formGroup]="searchForm" (submit)="search()" class="mb-5">
     <div class="form-group mb-2">
       <label for="name">Name:</label>
@@ -45,17 +45,21 @@
   <div>
     <label><b>Actions:</b></label> &nbsp;
     <button class="btn btn-outline-info" (click)="startMachinee(machine.id)">Start</button>
-    &nbsp;-
+    -
     <button class="btn btn-outline-warning" (click)="restartMachine(machine.id)">Restart</button>
-    &nbsp;-
+    -
+    <button  [routerLink]="'/schedule/' + machine.id" class="btn btn-outline-info">Schedule</button>
+    -
     <button class="btn btn-outline-danger" (click)="destroyMachine(machine.id)">Destroy</button>
   </div>
   <ng-template #startMachine>
     <label><b>Action:</b></label> &nbsp;
     <button class="btn btn-outline-info" (click)="stopMachine(machine.id)">Stop</button>
-    &nbsp;-
+    -
     <button class="btn btn-outline-warning" (click)="restartMachine(machine.id)">Restart</button>
-    &nbsp;-
+    -
+    <button [routerLink]="'/schedule/' + machine.id" class="btn btn-outline-info">Schedule</button>
+    -
     <button class="btn btn-outline-danger" (click)="destroyMachine(machine.id)">Destroy</button>
   </ng-template>
   <hr>

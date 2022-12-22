@@ -93,6 +93,10 @@ export class AllMachinesComponent  implements OnInit, OnDestroy{
     })
   }
 
+  scheduleMachine(id: number){
+
+  }
+
   startMachinee(id: number){//todo mozda da se stavi alert ako je dugme suprotstavlja specifikaciji
     console.log("startujemo " + id)
     this.machineService.startMachine(id).subscribe(result => {

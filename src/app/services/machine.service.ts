@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {ErrorMessage, Machine, User} from "../models";
+import {
+  ErrorMessage,
+  Machine,
+  ScheduleParameters,
+} from "../models";
 import {environment} from "../environments/environment";
 
 @Injectable({
@@ -30,6 +34,10 @@ export class MachineService {
     return this.httpClient.get<ErrorMessage[]>(`${environment.apiMachineServerUrl}/errors`,{ headers: this.headers, params: params })
   }
 
+  public scheduleMachine(scheduleRequest: ScheduleParameters): Observable<any>{
+    return this.httpClient.post<any>(`${environment.apiMachineServerUrl}/schedule`,scheduleRequest,{headers: this.headers} );
+  }
+
   public createMachine(name: string, mail: string): Observable<Machine>{//todo fix
     console.log(mail)
     console.log(name)
@@ -38,10 +46,12 @@ export class MachineService {
     url.searchParams.append('mail','ljeremic@raf.rs')
     url.searchParams.append('name','newnew')
 
-    console.log(url)
+    const params = new HttpParams()
+      .set('id','ljeremic@raf.rs')
+      .set('date',"neww")
 
-    // return this.httpClient.post<Machine>(`${environment.apiMachineServerUrl}/create`, { headers: this.headers });
-    return this.httpClient.post<Machine>(`${url}`, { headers: this.headers });
+    return this.httpClient.post<Machine>(`${environment.apiMachineServerUrl}/create`,params ,{ headers: this.headers });
+    // return this.httpClient.post<Machine>(`${url}`, { headers: this.headers });
   }
 
   public startMachine(id: number): Observable<Machine>{
@@ -56,8 +66,8 @@ export class MachineService {
     return this.httpClient.get<Machine>(`${environment.apiMachineServerUrl}/restart/${id}`, { headers: this.headers });
   }
 
-  public destroyMachine(id: number): Observable<Machine>{
-    return this.httpClient.delete<Machine>(`${environment.apiMachineServerUrl}/destroy/${id}`, { headers: this.headers });
+  public destroyMachine(id: number): Observable<any>{
+    return this.httpClient.delete<any>(`${environment.apiMachineServerUrl}/destroy/${id}`, { headers: this.headers });
   }
 
   public searchMachines(mail: string, name: string, status: any, dateFrom: any, dateTo: any): Observable<Machine>{

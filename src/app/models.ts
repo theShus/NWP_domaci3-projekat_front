@@ -46,6 +46,13 @@ export interface MachineSearchParameters{
   dateTo: any
 }
 
+export interface ScheduleParameters{
+  id: number
+  date: string
+  time: string
+  action: string
+}
+
 export enum Status {
   STOPPED,
   RUNNING
@@ -57,10 +64,6 @@ export interface ErrorMessage {
   action: string
   date: Date
   machine: Machine
-}
-
-export interface SearchResult {
-  array: []
 }
 
 
