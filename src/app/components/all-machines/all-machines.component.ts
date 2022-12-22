@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
-import {Machine, MachineSearchParameters} from "../../models";
+import {MachineSearchParameters} from "../../models";
 import {MachineService} from "../../services/machine.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
@@ -93,7 +93,7 @@ export class AllMachinesComponent  implements OnInit, OnDestroy{
     })
   }
 
-  startMachinee(id: number){
+  startMachinee(id: number){//todo mozda da se stavi alert ako je dugme suprotstavlja specifikaciji
     console.log("startujemo " + id)
     this.machineService.startMachine(id).subscribe(result => {
       this.router.navigate(['/machines'])
@@ -122,6 +122,11 @@ export class AllMachinesComponent  implements OnInit, OnDestroy{
     this.machineService.destroyMachine(id).subscribe(result => {
       this.router.navigate(['/machines'])
       console.log(result)    })
+  }
+
+  logOut(): void {
+    localStorage.setItem("token", '')
+    localStorage.setItem("roles", '')
   }
 
 }
